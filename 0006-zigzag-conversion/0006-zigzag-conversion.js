@@ -11,15 +11,16 @@ var convert = function(s, numRows) {
     for (let i = 1; i <= numRows; i++) {
         for (let j = 1; j <= arrString.length; j++) {
             const keyField = (j * 2) - 3 + i;
-            const getValue = () => arrString[keyField] || '';
-            if (j !== 1 && j !== n) {
-                if (n - j + 1 === i) {
-                    str += getValue();
-                } 
-            } else {
-                str += getValue();
-                if (j === n) {
-                    n += numRows - 1;
+            if (arrString[keyField]) {
+                if (j !== 1 && j !== n) {
+                    if (n - j + 1 === i) {
+                        str += arrString[keyField];
+                    } 
+                } else {
+                    str += arrString[keyField];
+                    if (j === n) {
+                        n += numRows - 1;
+                    }
                 }
             }
         }
