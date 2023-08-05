@@ -3,9 +3,14 @@
  * @return {number}
  */
 var reverse = function(x) {
-    let str = x.toString().split('').reverse().join('');
-    if (x < 0) str = str.replace('-', '');
-    let reverse = x < 0 ? 0 - Number(str) : Number(str);
-    if (reverse < ((0 - 2) ** 31) || reverse > ((2 ** 31) - 1)) reverse = 0;
-    return reverse;
+    const INT_MIN = -Math.pow(2, 31);
+    const INT_MAX = Math.pow(2, 31) - 1;
+
+    let str = Math.abs(x).toString().split('').reverse().join('');
+    let reversed = Number(str) * Math.sign(x);
+
+    if (reversed < INT_MIN || reversed > INT_MAX) {
+        return 0;
+    }
+    return reversed;
 };
